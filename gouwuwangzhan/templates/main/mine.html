@@ -1,0 +1,113 @@
+{% extends 'base_main.html' %}
+{% load staticfiles %}
+
+{% block mycss %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/css/mine.css' %}">
+{% endblock %}
+{% block myjs %}
+{{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/main/js/mine.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="mine">
+    <div class="fixed">
+        <span>
+            {% if user.username %}
+                <img class="u_icon" src="/static/uploads/{{ user.uicon }}" alt="{{ user.username }}">
+            {% else %}
+                <span class="glyphicon glyphicon-user"></span>
+            {% endif %}
+        </span>
+        {% if request.session.username %}
+            {{ request.session.username }}
+        {% else %}
+            <p id="not_login">未登录</p>
+        {% endif %}
+
+        <p>
+        <span class="glyphicon glyphicon-fire"></span>
+        <span>等级</span>
+        </p>
+        <div id="regis">注册</div>
+         <p>
+        <span class="glyphicon glyphicon-heart"></span>
+        <span>商品的收藏</span>
+        </p>
+    </div>
+    <div class="mine">
+        <p>
+            <span>我的订单</span>
+            <a href="#">查看全部订单&gt</a>
+        </p>
+        <nav id="nav">
+            <ul>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-barcode"></span></dt>
+                        <dd>待付款</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-plane"></span></dt>
+                        <dd>待收货</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-pencil"></span></dt>
+                        <dd>待评价</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-list-alt"></span></dt>
+                        <dd>退款/售后</dd>
+                    </dl>
+                </li>
+            </ul>
+        </nav>
+        <menu>
+            <ul>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                        <dd>积分商城</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                        <dd>收货地址</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                        <dd>我的消息</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                        <dd>客服/反馈</dd>
+                    </dl>
+                </li>
+                                <li>
+                    <dl>
+                        <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                        <dd>关于我们</dd>
+                    </dl>
+                </li>
+            </ul>
+        </menu>
+        <p>
+            <a href="{% url 'App:user_logout' %}">退出账号</a>
+        </p>
+    </div>
+
+
+    </div>
+{% endblock %}

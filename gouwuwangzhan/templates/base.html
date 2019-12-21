@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+{#    主要完成设置适配，手机端  pc端  contet 取值width：可视区域的宽度 initial-scale：首页缩放的级别  #}
+{#    maximum-scale用户将页面进行放大的最大尺寸不能超过页面的实际尺寸#}
+    <meta name="viewport" content="width=device-width,initial-sacle=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
+    {% block mycss %}
+
+    {% endblock %}
+
+</head>
+<body>
+{% block header %}
+
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+
+
+{#定义自己的部分#}
+{% block myjs %}
+
+{% endblock %}
+</body>
+</html>

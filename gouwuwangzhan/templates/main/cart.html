@@ -1,0 +1,92 @@
+{% extends 'base_main.html' %}
+{% load staticfiles %}
+
+{% block mycss %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/css/cart.css' %}">
+{% endblock %}
+
+{% block myjs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/main/js/cart.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div id="cart">
+        <h3>Cart</h3>
+        <div class="full">
+            <section>
+                <ul>
+                    <li>收&nbsp;&nbsp;货&nbsp;&nbsp;人:&nbsp;<span id="totalprice">11112222</span></li>
+                    <li>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:&nbsp;11012345678</li>
+                    <li>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:&nbsp;十里铺六号楼</li>
+                </ul>
+
+                <div class="bill">
+
+                    <p>闪送超市</p>
+                    <p>0元起送满30免运费22:00前可送达</p>
+                    <a href="#">凑单专区</a>
+
+                </div>
+
+                <div class="delivery">
+                    <span>收货时间</span>
+                    <span>一小时内送达</span>
+                    <a href="#">可预订&gt;</a>
+                </div>
+
+                <div class="delivery">
+                    <span>收获备注</span>
+                    <input type="text" placeholder="可输入100字以内的特殊要求">
+                </div>
+
+                <ul>
+                    {% for cart_good in cart_goods %}
+                        <li class="menuList" cartid="{{ cart_good.id }}">
+                        <div class="confirm">
+                            <span>
+                                {% if cart_good.is_select %}
+                                    <span>√</span>
+                                {% else %}
+                                    <sapn></sapn>
+
+                                {% endif %}
+                            </span>
+
+                        </div>
+                        <a href="#">
+                            <img src='{{ cart_good.goods.productimg }}' alt="{{ cart_good.goods.productname }}">
+                            <p>{{ cart_good.goods.productname }}</p>
+                            <p class="presentPrice">{{ cart_good.goods.marketprice }}</p>
+                        </a>
+                        <section>
+                            <button class="subShopping">-</button>
+                            <span>{{ cart_good.goods_num }}</span>
+                            <button class="addShopping">+</button>
+                        </section>
+
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+                <div class="payTheBill">
+                    <p>
+                        <span>全选</span>
+                        <span>共计:</span>
+{#                        选中的总价#}
+                        <span id="totalprice">{{ total_price }}</span>
+                    </p>
+                    <a href="{% url 'App:success_cart' %}" style="color: yellow;background-color: red;width: 100%;"><button style="color: black;size: auto">下单</button></a>
+                </div>
+
+            </section>
+
+
+        </div>
+    </div>
+{% endblock %}
